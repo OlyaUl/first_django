@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for cat in cats %}
+{{cat.title}}
+<br>
+{% endfor %}
+<form method='POST' action="{% url 'create_cat' %}">
+    {% csrf_token %}
+  <input type="text" name="title">title<br>
+  <input type="text" name="description">description<br>
+<!--  <input type="text" name="year">year<br>
+  <input type="text" name="authors">authors<br>
+  <input type="text" name="category">category<br>-->
+  <p><input type="submit">OK</p>
+ </form>
+</body>
+</body>
+</html>
