@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-% csrf_token %}
-<h1>All categories</h1>
+{% extends 'test_app/index.html' %}
 
-{% for book in books %}
-Title: {{book.title}}<br>
-Year: {{book.year}}<br>
-Description: {{book.description}}<br>
-{% for author in book.authors.all %}
-Authors: {{author.name}}<br>
-{%endfor%}
-Category: {{book.category}}<br>
-<br>
-<br>
-{% endfor %}
-</body>
-</html>
+{% block content %}
+    <h1>All categories</h1>
+    {% for cat in categories %}
+        Title: {{ cat.title }}<br>
+        description: {{ cat.description }}
+        <br>
+        <br>
+    {% endfor %}
+    <br>
+{% endblock %}

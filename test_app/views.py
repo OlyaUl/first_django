@@ -22,7 +22,7 @@ def create_cat(request):
 def info_book(request):
     # book_info = Book.objects.get(pk=1)
     # return render(request, 'test_app/books.html', {'book_info': book_info})
-    t = loader.get_template('test_app/books.html')
+    t = loader.get_template('test_app/info_books.html')
     c = {'books': Book.objects.all().prefetch_related('authors')}
     return HttpResponse(t.render(c, request))
 
@@ -39,3 +39,10 @@ def authors(request):
     authors = Author.objects.all()
     return render(request, 'test_app/authors.html',
                   {'authors': authors})
+
+
+def books(request):
+    # return HttpResponse("Hello, world!")
+    books = Book.objects.all()
+    return render(request, 'test_app/books.html',
+                  {'books': books})

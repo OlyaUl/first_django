@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load staticfiles %}
     {% csrf_token %}
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'test_app/style.css' %}">
+    <script src="{% static 'test_app/js/main.js' %}"></script>
+
 </head>
 <body>
-    <h1>All books</h1>
-    {% for book in books %}
-    {{book.title}}
-    <br>
-    {% endfor %}
+
+<div>
+    <a href="/test_app/books/">Books</a>
+    <a href="/test_app/authors/">Authors</a>
+    <a href="/test_app/category/">Category</a>
+</div>
+
+{% block content %}
+{% endblock %}
 </body>
 </html>

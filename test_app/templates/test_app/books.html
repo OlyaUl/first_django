@@ -1,35 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% csrf_token %}
+{% extends 'test_app/index.html' %}
 
-<!--  <h1>Info book</h1>
-  {{info_book}}
-  {{info_book.title}}<br>
-  {{info_book.year}}<br>
-  {{info_book.description}}<br>
-  {{info_book.authors}}<br>
-  {{info_book.category}}<br>
--->
-<h1>Info books</h1>
-
-{% for book in books %}
-Title: {{book.title}}<br>
-Year: {{book.year}}<br>
-Description: {{book.description}}<br>
-{% for author in book.authors.all %}
-Authors: {{author.name}}<br>
-{%endfor%}
-Category: {{book.category}}<br>
-<br>
-<br>
-{% endfor %}
-{% load static %}
-<img src="{% static 'test_app/img/cat1.jpg' %}" alt="My image"/>
-
-</body>
-</html>
+{% block content %}
+    <h1>All books</h1>
+    {% for book in books %}
+        Title: {{ book.title }}<br>
+        Year: {{ book.year }}<br>
+        Description: {{ book.description }}<br>
+        {% for author in book.authors.all %}
+            Authors: {{ author.name }}<br>
+        {% endfor %}
+        Category: {{ book.category }}<br>
+        <br>
+        <br>
+    {% endfor %}
+{% endblock %}
