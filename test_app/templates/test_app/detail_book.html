@@ -1,0 +1,7 @@
+  Title: {{ book.title }}<br>
+        Year: {{ book.year }}<br>
+        Description: {{ book.description }}<br>
+        {% for author in book.authors.all %}
+            Authors: {{ author.name }}<br>
+        {% endfor %}
+        Category: {{ book.category }}<br>

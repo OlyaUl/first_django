@@ -11,6 +11,7 @@ class Book(models.Model):
     # image = models.ImageField()
     # prev = models.ImageField()
 
+
 class Caterogy(models.Model):
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=1000)

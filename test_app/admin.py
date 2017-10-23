@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Caterogy
 
-# Register your models here.
+
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+
+admin.register(Caterogy, CategoryAdmin)
