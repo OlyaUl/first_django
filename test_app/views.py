@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic.edit import ModelFormMixin
+
 from .models import Book, Caterogy, Author
 from django.template import loader
-from django.views.generic import View, ListView, CreateView, DetailView, FormView
+from django.views.generic import View, ListView, CreateView, DetailView, FormView, UpdateView, DeleteView
 from django.utils import timezone
 from .forms import CategoryForm
-
+from django.urls import reverse_lazy
 
 class BookListView(ListView):
     template_name = 'test_app/list.html'
@@ -30,22 +32,41 @@ class CategoryCreateView(ListView):
     fields = ['title']
 
 
-class CategoryFormView(FormView):
+class CategoryFormView(CreateView):
     form_class = CategoryForm
     template_name = 'test_app/form_category.html'
     success_url = '/test_app/category/'
 
-    def post(self, request, *args, **kwargs):
-        """
-        Handles POST requests, instantiating a form instance with the passed
-        POST variables and then checked for validity.
-        """
-        form = self.get_form()
-        if form.is_valid():
-            form.save()
-            return self.form_valid(form)
+    # class CategoryFormView(FormView): - просто для вывода, если добавлять данные то CreateView
 
-        return self.form_invalid(form)
+    # def post(self, request, *args, **kwargs):
+    #     """
+    #     Handles POST requests, instantiating a form instance with the passed
+    #     POST variables and then checked for validity.
+    #     """
+    #     form = self.get_form()
+    #     if form.is_valid():
+    #         form.save()
+    #         return self.form_valid(form)
+    #
+    #     return self.form_invalid(form)
+
+
+class CategoryUpdate(UpdateView):
+    model = Caterogy
+    fields = ['title']
+    # template_name_suffix = '_update_form'
+    template_name = 'test_app/category_update_form.html'
+    success_url = '/test_app/category/'
+
+
+class CategoryDelete(DeleteView):
+    model = Caterogy
+    fields = ['title']
+    template_name = 'test_app/category_confirm_delete.html'
+    # success_url = reverse_lazy('/test_app/category/')
+    success_url = '/test_app/category/'
+
 
 
 class BookDetailView(DetailView):
@@ -63,6 +84,9 @@ class BookDetailView(DetailView):
         context['now'] = timezone.now()
         return context
 
+
+
+# -----------------------------------------------------------------------------------------
 
 
 def index(request):

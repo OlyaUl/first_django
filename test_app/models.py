@@ -11,6 +11,9 @@ class Book(models.Model):
     # image = models.ImageField()
     # prev = models.ImageField()
 
+    def __str__(self):
+        return '{0} {1}'.format(self.authors, self.category)
+
 
 class Caterogy(models.Model):
     title = models.CharField(max_length=30)

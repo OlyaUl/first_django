@@ -16,6 +16,8 @@ urlpatterns = [
     url(r'^category/$', views.CategoryListView.as_view(), name='category'),
     url(r'category/add/$', views.CategoryCreateView.as_view(), name='category_add'),
     url(r'^books/$', views.CategoryFormView.as_view(), name='books'),
+    url(r'^category_update/(?P<pk>\d)/$', views.CategoryUpdate.as_view(), name='category_update'),
+    url(r'^category_delete/(?P<pk>\d)/$', views.CategoryDelete.as_view(), name='category_delete'),
 
 ]
 

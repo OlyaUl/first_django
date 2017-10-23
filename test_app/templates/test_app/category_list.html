@@ -5,6 +5,8 @@
 
     <h1>All categories</h1>
     {% for cat in categories %}
+        id: {{ cat.pk }}<br>
+
         Title: {{ cat.title }}<br>
         description: {{ cat.description }}
         <br>
